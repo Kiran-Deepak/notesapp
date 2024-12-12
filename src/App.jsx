@@ -91,7 +91,122 @@ export default function App() {
   return (
     <Authenticator>
       {({ signOut }) => (
-        <Flex
+        <>
+        <div className="flex-1 p-0 m-0 w-screen h-screen text-black flex flex-col"
+          
+          >
+          <div className="bg-blue-300 p-2 flex items-center justify-between">
+            <h1 className="text-3xl font-semibold text-blue-800">
+              Notes App
+            </h1>
+            <div className="p-2 ">
+              <button onClick={signOut}
+                className="text-base font-medium p-2 shadow rounded text-white bg-red-500 "
+                >
+                  Sign Out
+              </button>
+            </div>
+          </div>
+          <div className="flex-1 flex border-t-2">
+            <div className="p-4 w-4/12 h-full border-r-2 ">
+              <h4 className="text-xl font-medium text-center bg-blue-200 rounded p-2 ">
+                Add Note
+              </h4>
+              <div className="p-2  ">
+              <form onSubmit={createNote} className="space-y-6">
+                <div className="flex flex-col space-y-4">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">Note Name</label>
+                    <input
+                      name="name"
+                      placeholder="Note Name"
+                      id="name"
+                      className="mt-2 p-3 border border-gray-300 rounded-md w-full"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="description" className="block text-sm font-medium text-gray-700">Note Description</label>
+                    <input
+                      name="description"
+                      placeholder="Note Description"
+                      id="description"
+                      className="mt-2 p-3 border border-gray-300 rounded-md w-full"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="image" className="block text-sm font-medium text-gray-700">Note Image (optional)</label>
+                    <input
+                      name="image"
+                      type="file"
+                      id="image"
+                      accept="image/png, image/jpeg"
+                      className="mt-2 p-3 border border-gray-300 rounded-md w-full"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+                  >
+                    Create Note
+                  </button>
+                </div>
+              </form>
+              <div className="opacity-50 p-4 text-base font-base text-center">
+                Developed By Group 15
+              </div>
+              </div>
+            </div>
+            <div className="flex-1 w-8/12 p-4">
+
+              <h4 className="text-lg text-center font-medium">
+                My Notes
+              </h4>
+              <div className="flex flex-wrap gap-2 ">
+                {notes.map((note) => (
+                  <div key={note.id || note.name} 
+                    className="flex flex-col border rounded w-48  shadow" >
+                    {note.image && (
+                        <img 
+                          src={note.image}
+                          alt={`visual aid for ${notes.name}`}
+                          // style={{ width: 100, height: 100 }}
+                          className="object-cover rounded-t h-48 w-48"
+                        />
+                      )}
+                      <div className="p-2 flex-1">
+                        <div className="max-h-16 ">
+                          <h2 className="capitalize text-base font-medium border-b-[1px]">
+                            {note.name}
+                          </h2>
+                        </div>
+                        <div className="max-h-48 overflow-auto">
+                          <p className="capitalize  text-sm font-normal ">
+                            {note.description}
+                          </p>
+                        </div>
+                      </div>
+                      <button onClick={() => deleteNote(note)} 
+                        className="p-2 w-full text-sm font-medium bg-red-500 rounded-b text-white">
+                          Delete
+                      </button>
+                  </div>
+                ))}
+              </div>
+              {notes.length == 0 && (
+                <div className="w-full h-full flex justify-center items-center">
+                  <p > Empty</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+         {/* <Flex
           className="App"
           justifyContent="center"
           alignItems="center"
@@ -99,7 +214,9 @@ export default function App() {
           width="70%"
           margin="0 auto"
         >
+
           <Heading level={1}>My Notes App</Heading>
+
           <View as="form" margin="3rem 0" onSubmit={createNote}>
             <Flex
               direction="column"
@@ -136,6 +253,7 @@ export default function App() {
               </Button>
             </Flex>
           </View>
+
           <Divider />
           <Heading level={2}>Current Notes</Heading>
           <Grid
@@ -178,7 +296,9 @@ export default function App() {
             ))}
           </Grid>
           <Button onClick={signOut}>Sign Out</Button>
-        </Flex>
+        </Flex>  */}
+        </>
+
       )}
     </Authenticator>
   );
