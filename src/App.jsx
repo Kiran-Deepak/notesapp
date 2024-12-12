@@ -97,7 +97,7 @@ export default function App() {
           >
           <div className="bg-blue-300 p-2 flex items-center justify-between">
             <h1 className="text-3xl font-semibold text-blue-800">
-              Notes App
+              Notes App 
             </h1>
             <div className="p-2 ">
               <button onClick={signOut}
